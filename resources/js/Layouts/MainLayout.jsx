@@ -37,9 +37,15 @@ export default function MainLayout({
                                 {auth.user ? (
                                     <Link
                                         href={route("dashboard")}
-                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff]"
+                                        className="flex flex-row rounded-md px-3 py-2 text-black ring-1 ring-transparent transition duration-300 hover:opacity-70 focus:outline-none focus-visible:ring-[#65adff]"
                                     >
-                                        Dashboard
+                                        <div className="size-8 bg-gray-700 rounded-full relative overflow-clip">
+                                            <div className="size-3 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/3"></div>
+                                            <div className="size-6 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-full"></div>
+                                        </div>
+                                        <p className="leading-7 pl-2">
+                                            {auth.user.name}
+                                        </p>
                                     </Link>
                                 ) : (
                                     <>

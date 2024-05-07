@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -13,7 +11,6 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'bgUrl' => asset('storage/bg2.svg'),
     ]);
 });
 
