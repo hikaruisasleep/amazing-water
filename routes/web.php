@@ -27,7 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('products', ProductController::class)
-    -> only(['index', 'store']);
+Route::get('/products', function() {
+    return Inertia::render('Application/Products');
+})->name('products');
+
+Route::get('/info', function() {
+    return Inertia::render('Application/Info');
+})->name('info');
 
 require __DIR__.'/auth.php';
