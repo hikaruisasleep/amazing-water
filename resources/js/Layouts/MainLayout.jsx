@@ -64,8 +64,7 @@ export default function MainLayout({
                     <footer className="pt-8 pb-12 text-center text-sm text-black select-none bottom-0">
                         <FontAwesomeIcon icon={faCopyright} /> PARANTHESES 2024
                         <br />
-                        Made with Laravel v{props.laravelVersion} (PHP v
-                        {props.phpVersion})
+                        Made with Laravel v11.5.0 (PHP 8.3.4)
                     </footer>
                 </div>
             </div>

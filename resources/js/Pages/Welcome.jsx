@@ -6,11 +6,7 @@ import MainLayout from "@/Layouts/MainLayout";
 export default function Welcome({ auth, laravelVersion, phpVersion, bgUrl }) {
     return (
         <>
-            <MainLayout
-                title="Home"
-                auth={auth}
-                props={[laravelVersion, phpVersion]}
-            >
+            <MainLayout title="Home" auth={auth}>
                 <div className="grid gap-6 lg:grid-cols-2 lg:grid-rows-5 lg:gap-8">
                     <div className="flex flex-col items-end gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:row-span-3">
                         <div className="flex items-start gap-4">

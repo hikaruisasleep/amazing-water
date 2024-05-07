@@ -29,7 +29,7 @@ export default function Background({ bgUrl, ...props }) {
             <div
                 id="background"
                 className="fixed h-screen max-h-full w-screen max-w-full flex flex-col justify-center items-center overflow-clip scale-110"
-                style={{ filter: "url(#turb) blur(2px)" }}
+                style={{ filter: "url(#turb) blur(4px)" }}
             >
                 <div className="h-[800px] w-[8000px] rotate-45 animate-right-pan">
                     {lines}
