@@ -88,18 +88,16 @@ export default function Welcome({ auth, laravelVersion, phpVersion, bgUrl }) {
                         </Link>
                     </div>
 
-                    <div className="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 lg:pb-10 lg:col-span-2 lg:row-span-2">
-                        <div className="flex-grow">
+                    <div className="flex items-center gap-4 rounded-lg bg-white px-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 lg:col-span-2 lg:row-span-2 py-6 lg:py-0">
+                        <div className="flex flex-col flex-grow">
                             <h2 className="text-xl font-semibold text-black">
                                 Contact
                             </h2>
 
                             <p className="mt-4 text-sm/relaxed">
-                                alamat
+                                San Dona, Carissa 6/02
                                 <br />
-                                no telp
-                                <br />
-                                apa lagi
+                                +62 812-345-678
                             </p>
                         </div>
                     </div>

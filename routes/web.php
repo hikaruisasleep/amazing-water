@@ -12,7 +12,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -31,5 +31,9 @@ Route::get('/products', function() {
 Route::get('/info', function() {
     return Inertia::render('Application/Info');
 })->name('info');
+
+Route::get('/cart', function() {
+    return Inertia::render('Application/Cart');
+})->middleware(['auth', 'verified'])->name('cart');
 
 require __DIR__.'/auth.php';
