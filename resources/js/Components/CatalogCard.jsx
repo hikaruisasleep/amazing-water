@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-export default function ResponsiveItemCard({ auth, title, description }) {
+export default function CatalogCard({ auth, title, description }) {
     const [quantity, setQuantity] = useState(0);
     const increase = () => {
         setQuantity((quantity) => quantity + 1);
@@ -17,8 +17,8 @@ export default function ResponsiveItemCard({ auth, title, description }) {
                     <p className="text-sm pt-4">{description}</p>
                 </div>
                 {auth.user ? (
-                    <div className="flex flex-row justify-center items-center ml-2">
-                        <div className="h-min w-max rounded-lg border border-gray-800 overflow-clip">
+                    <div className="flex flex-col justify-center items-center ml-2">
+                        <div className="flex flex-row justify-center items-center h-min w-max rounded-lg border border-gray-800 overflow-clip">
                             <button
                                 className="bg-gray-200 w-6"
                                 onClick={decrease}
@@ -43,6 +43,7 @@ export default function ResponsiveItemCard({ auth, title, description }) {
                                 +
                             </button>
                         </div>
+                        <p className="text-xs mt-1">gallons</p>
                     </div>
                 ) : (
                     <></>
