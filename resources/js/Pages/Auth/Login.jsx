@@ -97,7 +97,7 @@ export default function Login({ status, canResetPassword }) {
                             </Link>
                         )}
                         <div className="flex flex-row text-sm text-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-2">
-                            <p>No account?&nbsp;</p>
+                            No account?&nbsp;
                             <Link
                                 href={route("register")}
                                 className="underline hover:text-gray-900 "
