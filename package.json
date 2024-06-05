@@ -9,7 +9,10 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"db:generate-migrations": "drizzle-kit generate:sqlite --config=src/lib/server/db/drizzle.config.ts",
+		"db:push": "drizzle-kit push:sqlite --config=src/lib/server/db/drizzle.config.ts",
+		"db:migrate": "tsx src/lib/server/db/migrate.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
