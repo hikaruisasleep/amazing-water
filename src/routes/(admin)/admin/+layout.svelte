@@ -1,5 +1,5 @@
 <script>
-	import '../app.css';
+	import '$lib/app.css';
 	import Background from '$lib/components/Background.svelte';
 
 	let auth = {
@@ -15,13 +15,13 @@
 		<div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 			<header class="grid grid-cols-2 items-center gap-2 py-6">
 				<a
-					href="/"
+					href="/admin"
 					class="flex flex-row justify-start text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff] select-none"
 				>
 					<span class="fa-solid fa-droplet pr-5 pt-3 pl-1 text-4xl" />
 					<h1 class="flex flex-col rounded">
 						<span class="text-3xl font-extrabold"> Amazing Water </span>
-						<span class="text-xs"> she RO on my water till i amazing </span>
+						<span class="text-xs">admin panel</span>
 					</h1>
 				</a>
 				<nav class="-mx-3 flex flex-1 justify-end">

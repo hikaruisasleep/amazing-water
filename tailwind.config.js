@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			animation: {
-				'right-pan': 'rpan 7s linear infinite'
+				'right-pan': 'rpan 7s linear alternate infinite'
 			},
 			keyframes: {
 				rpan: {

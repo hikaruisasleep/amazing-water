@@ -2,8 +2,7 @@ import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { generateRandomInteger } from 'oslo/crypto';
 
 function generateUid() {
-	let random = generateRandomInteger(99999);
-	return '70' + random.toString;
+	return '70' + String(generateRandomInteger(9999));
 }
 
 const timestamp = {
@@ -22,7 +21,7 @@ const users = sqliteTable('users', {
 		.notNull()
 		.unique()
 		.$defaultFn(() => generateUid()),
-	username: text('username').notNull(),
+	username: text('username').notNull().unique(),
 	password: text('password').notNull(),
 	first_name: text('first_name'),
 	last_name: text('last_name')
@@ -30,4 +29,18 @@ const users = sqliteTable('users', {
 
 type InsertUserParams = typeof users.$inferInsert;
 
-export { users, type InsertUserParams };
+const products = sqliteTable('products', {
+	...timestamp,
+	id: text('id')
+		.primaryKey()
+		.notNull()
+		.unique()
+		.$defaultFn(() => generateUid()),
+	name: text('name').notNull().unique(),
+	description: text('description'),
+	price: integer('price').notNull()
+});
+
+type InsertProductParams = typeof products.$inferInsert;
+
+export { users, type InsertUserParams, products, type InsertProductParams };
