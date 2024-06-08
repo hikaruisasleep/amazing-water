@@ -4,7 +4,7 @@
 	export let title: string;
 	export let description: string;
 
-	let quantity: number = 0;
+	export let quantity: number = 0;
 </script>
 
 <div

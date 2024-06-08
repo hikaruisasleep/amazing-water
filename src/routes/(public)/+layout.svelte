@@ -3,14 +3,19 @@
 	import Background from '$lib/components/Background.svelte';
 
 	export let data;
+	$: auth = data.auth;
 
-	let auth = data.auth;
+	let dropdown = false;
+
+	const toggleProfileDropdown = () => {
+		dropdown = !dropdown;
+	};
 </script>
 
 <div class="bg-gray-50 text-black/50">
 	<Background />
 	<div
-		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-0 px-28"
+		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-0 px-1 lg:px-28"
 	>
 		<div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 			<header class="grid grid-cols-2 items-center gap-2 py-6">
@@ -19,19 +24,24 @@
 					class="flex flex-row justify-start text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff] select-none"
 				>
 					<span class="fa-solid fa-droplet pr-5 pt-3 pl-1 text-4xl" />
-					<h1 class="flex flex-col rounded">
-						<span class="text-3xl font-extrabold"> Amazing Water </span>
-						<span class="text-xs"> she RO on my water till i amazing </span>
+					<h1 class="flex flex-col justify-center">
+						<span class="text-md sm:text-3xl font-extrabold"> Amazing Water </span>
+						<span class="hidden sm:inline-block text-xs"> she RO on my water till i amazing </span>
 					</h1>
 				</a>
 				<nav class="-mx-3 flex flex-1 justify-end">
-					{#if auth.user}
+					{#if auth}
 						<a href="cart">
 							<span class="fa-solid fa-cart-shopping pb-2 text-2xl text-black py-3 px-2"></span>
 						</a>
-						<div
-							class="flex flex-row rounded-md px-3 py-2 text-black ring-1 ring-transparent transition duration-500 hover:opacity-70 focus:outline-none focus-visible:ring-[#65adff] focus:bg-white"
+						<button
+							type="button"
+							class="flex flex-row rounded-md px-3 py-2 text-black ring-1 ring-transparent transition duration-500 hover:opacity-70 focus-visible:ring-[#65adff]"
+							on:click={toggleProfileDropdown}
 						>
+							<p class="leading-7 pr-2 select-none">
+								{auth.user.first_name}
+							</p>
 							<div class="size-8 bg-gray-700 rounded-full relative overflow-clip">
 								<div
 									class="size-3 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/3"
@@ -40,10 +50,7 @@
 									class="size-6 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-full"
 								></div>
 							</div>
-							<p class="leading-7 pl-2 select-none">
-								{auth.user.first_name}
-							</p>
-						</div>
+						</button>
 
 						<!-- 
 							<Dropdown.Content>

@@ -43,4 +43,23 @@ const products = sqliteTable('products', {
 
 type InsertProductParams = typeof products.$inferInsert;
 
-export { users, type InsertUserParams, products, type InsertProductParams };
+const carts = sqliteTable('cart', {
+	id: text('id')
+		.primaryKey()
+		.notNull()
+		.unique()
+		.$defaultFn(() => generateUid()),
+	owner_id: text('owner_id').references(() => users.id),
+	items: text('items', { mode: 'json' })
+});
+
+type InsertCartParams = typeof carts.$inferInsert;
+
+export {
+	users,
+	type InsertUserParams,
+	products,
+	type InsertProductParams,
+	carts,
+	type InsertCartParams
+};

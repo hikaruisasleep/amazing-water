@@ -7,12 +7,9 @@ export const load: LayoutServerLoad = async function load({ cookies }) {
 	if (session) {
 		const { uid, sessionID } = JSON.parse(session!);
 
-		const user = await getUserById(uid);
-
 		return {
 			auth: {
-				session: sessionID,
-				user: user
+				session: sessionID
 			}
 		};
 	} else {
