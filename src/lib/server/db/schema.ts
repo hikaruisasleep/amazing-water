@@ -49,8 +49,10 @@ const carts = sqliteTable('cart', {
 		.notNull()
 		.unique()
 		.$defaultFn(() => generateUid()),
-	owner_id: text('owner_id').references(() => users.id),
-	items: text('items', { mode: 'json' })
+	owner_id: text('owner_id')
+		.references(() => users.id)
+		.notNull(),
+	items: text('items', { mode: 'json' }).$type<{ [x: string]: { amt: number } }[]>()
 });
 
 type InsertCartParams = typeof carts.$inferInsert;

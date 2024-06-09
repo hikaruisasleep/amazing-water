@@ -2,7 +2,7 @@ import { db } from '$lib/server/db/client';
 import { carts, type InsertCartParams } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
-const insertIntoCart = async (items: InsertCartParams) => {
+const createNewCart = async (items: InsertCartParams) => {
 	await db.insert(carts).values(items);
 };
 
@@ -16,8 +16,11 @@ const getCartFromOwnerId = async (uid: string) => {
 	return cart[0];
 };
 
-const editCartById = async (cart: InsertCartParams & { id: string }) => {
-	await db.update(carts).set(cart).where(eq(carts.id, carts.id));
+const editCartById = async (cart: InsertCartParams & { id: string; owner_id: string }) => {
+	await db
+		.update(carts)
+		.set(cart)
+		.where(eq(carts.id, cart.id) && eq(carts.owner_id, cart.owner_id));
 };
 
-export { insertIntoCart, getCartById, getCartFromOwnerId, editCartById };
+export { createNewCart, getCartById, getCartFromOwnerId, editCartById };

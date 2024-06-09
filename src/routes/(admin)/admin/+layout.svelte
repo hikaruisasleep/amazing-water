@@ -20,7 +20,7 @@
 		<div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 			<header class="grid grid-cols-2 items-center gap-2 py-6">
 				<a
-					href="admin"
+					href="/admin"
 					class="flex flex-row justify-start text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff] select-none"
 				>
 					<span class="fa-solid fa-droplet pr-5 pt-3 pl-1 text-4xl" />

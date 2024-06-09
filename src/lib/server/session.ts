@@ -6,8 +6,7 @@ export function createSession(cookies: Cookies) {
 	cookies.set('session', JSON.stringify({ sessionID }), {
 		path: '/',
 		expires: new Date(Temporal.Now.plainDateTimeISO().add({ hours: 2 }).toString()),
-		sameSite: 'lax',
-		httpOnly: true
+		sameSite: 'lax'
 	});
 }
 
@@ -23,7 +22,10 @@ export function setSessionUser({
 	cookies.set('session', JSON.stringify({ uid, sessionID }), {
 		path: '/',
 		expires: new Date(Temporal.Now.plainDateTimeISO().add({ hours: 2 }).toString()),
-		sameSite: 'lax',
-		httpOnly: true
+		sameSite: 'lax'
 	});
+}
+
+export function deleteSession(cookies: Cookies) {
+	cookies.delete('session', { path: '/' });
 }

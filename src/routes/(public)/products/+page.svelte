@@ -3,11 +3,28 @@
 
 	export let data;
 	let auth = data.auth ? data.auth : false;
-	let productAmounts: { [id: string]: { amt: number } } = {};
+	let productAmounts: any = {};
 
-	for (const product of data.products) {
-		let id = product.id;
-		productAmounts = Object.assign({ [id]: { amt: 0 } });
+	if (data.cart) {
+		for (const product of data.products) {
+			for (const cart of [data.cart]) {
+				if (cart.items) {
+					for (const item of Object.values(cart.items)) {
+						const currentItem = item[product.id];
+						if (typeof currentItem === 'undefined') {
+							console.warn('undefined item skipped');
+						} else {
+							productAmounts[product.id] = { amt: item[product.id].amt };
+						}
+					}
+				}
+			}
+		}
+	} else {
+		for (const product of data.products) {
+			console.log('no cart forced write');
+			productAmounts[product.id] = { amt: 0 };
+		}
 	}
 
 	export let form;
@@ -69,5 +86,4 @@
 			</div>
 		</a>
 	{/if}
-	{form?.items}
 </div>

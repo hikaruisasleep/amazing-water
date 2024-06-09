@@ -40,7 +40,7 @@
 							on:click={toggleProfileDropdown}
 						>
 							<p class="leading-7 pr-2 select-none">
-								{auth.user.first_name}
+								<!-- {auth.user.first_name} -->
 							</p>
 							<div class="size-8 bg-gray-700 rounded-full relative overflow-clip">
 								<div

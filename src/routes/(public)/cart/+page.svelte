@@ -1,12 +1,15 @@
 <script lang="ts">
-	let items: any[] = [];
+	export let data;
+
+	let cart = data.cart;
 </script>
 
 <div
 	class="min-h-[36em] bg-[rgba(255,255,255,0.55)] rounded-lg flex items-center justify-center flex-col"
 >
-	{#if items.length}
-		{#each items as item}
+	{cart.productIDs}
+	{#if cartItems}
+		{#each cartItems as item}
 			<div>{item}</div>
 		{/each}
 	{:else}

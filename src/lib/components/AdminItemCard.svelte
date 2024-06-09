@@ -14,7 +14,7 @@
 		<div
 			class="flex flex-row justify-center items-center h-min w-max rounded-lg border border-gray-800 overflow-clip"
 		>
-			<a href="admin/products/{product.id}/edit" class="bg-gray-200 px-2">edit</a>
+			<a href="/admin/products/{product.id}" class="bg-gray-200 px-2">edit</a>
 		</div>
 	</div>
 </div>
