@@ -1,21 +1,18 @@
-<script>
+<script lang="ts">
 	import '$lib/app.css';
 	import Background from '$lib/components/Background.svelte';
+	import { clickOutside } from '$lib/modules/clickOutside';
 
 	export let data;
 	$: auth = data.auth;
 
-	let dropdown = false;
-
-	const toggleProfileDropdown = () => {
-		dropdown = !dropdown;
-	};
+	let showDropdown: boolean;
 </script>
 
 <div class="bg-gray-50 text-black/50">
 	<Background />
 	<div
-		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-0 px-1 lg:px-28"
+		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-10 px-1 lg:px-28"
 	>
 		<div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 			<header class="grid grid-cols-2 items-center gap-2 py-6">
@@ -29,7 +26,7 @@
 						<span class="hidden sm:inline-block text-xs"> she RO on my water till i amazing </span>
 					</h1>
 				</a>
-				<nav class="-mx-3 flex flex-1 justify-end">
+				<nav class="-mx-3 flex flex-1 justify-end relative">
 					{#if auth}
 						<a href="cart">
 							<span class="fa-solid fa-cart-shopping pb-2 text-2xl text-black py-3 px-2"></span>
@@ -37,11 +34,11 @@
 						<button
 							type="button"
 							class="flex flex-row rounded-md px-3 py-2 text-black ring-1 ring-transparent transition duration-500 hover:opacity-70 focus-visible:ring-[#65adff]"
-							on:click={toggleProfileDropdown}
+							on:click={() => (showDropdown = true)}
 						>
-							<p class="leading-7 pr-2 select-none">
-								<!-- {auth.user.first_name} -->
-							</p>
+							<!-- <p class="leading-7 pr-2 select-none">
+								{auth.user.first_name}
+							</p> -->
 							<div class="size-8 bg-gray-700 rounded-full relative overflow-clip">
 								<div
 									class="size-3 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/3"
@@ -52,14 +49,23 @@
 							</div>
 						</button>
 
-						<!-- 
-							<Dropdown.Content>
-								<Dropdown.Link href={route('dashboard')}>Profile</Dropdown.Link>
-								<Dropdown.Link href={route('logout')} method="post" as="button">
-									Log Out
-								</Dropdown.Link>
-							</Dropdown.Content>
-						</Dropdown> -->
+						<div
+							class="bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] p-4 rounded-lg absolute top-12 right-3 flex flex-col gap-4 transition-all duration-700"
+							class:hidden={!showDropdown}
+							class:opacity-0={!showDropdown}
+							class:opacity-100={showDropdown}
+							use:clickOutside
+							on:click_outside={() => (showDropdown ? (showDropdown = false) : showDropdown)}
+						>
+							<a
+								href="/profile"
+								class="hover:text-black transition-all"
+								on:click={() => (showDropdown = false)}>Profile</a
+							>
+							<form action="/logout" method="post">
+								<button type="submit" class="text-red-700"> Log Out </button>
+							</form>
+						</div>
 					{:else}
 						<a
 							href="login"
@@ -86,8 +92,8 @@
 			</a>
 			<br />
 			<p
-				class="text-gray-600 opacity-65 max-w-[85ch] mt-1"
-				style="font-size: 0.6rem; line-height: 1rem;"
+				class="text-gray-600 opacity-65 max-w-[85ch] mt-1 px-4"
+				style="font-size: 0.5rem; line-height: 0.75rem;"
 			>
 				This is our final project for Website Design course in the 2<sup>nd</sup> semester in Universitas
 				Internasional Batam with Mr. Fredian Simanjuntak, S. Kom., M. Kom. as Lecturers.

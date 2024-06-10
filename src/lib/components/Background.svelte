@@ -14,9 +14,9 @@
 	id="background"
 	class="fixed h-screen max-h-full w-screen max-w-full flex flex-col justify-center items-center overflow-clip scale-110"
 >
-	<div class="h-[800px] w-[8000px] rotate-45 animate-right-pan">
+	<div class="h-[800px] w-[4000px] rotate-45 animate-right-pan">
 		{#each [...Array(125)] as _}
-			<div class="h-[0.1rem] w-full bg-[#65adff] mb-[0.9rem]"></div>
+			<div class="h-[0.1rem] w-full bg-[#65adff] mb-[1.5rem]"></div>
 		{/each}
 	</div>
 </div>

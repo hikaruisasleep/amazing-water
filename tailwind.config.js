@@ -8,8 +8,8 @@ export default {
 			},
 			keyframes: {
 				rpan: {
-					'0%': { translate: '10%' },
-					'100%': { translate: '12%' }
+					'0%': { translate: '20% -28%' },
+					'100%': { translate: '23% -28%' }
 				}
 			}
 		}

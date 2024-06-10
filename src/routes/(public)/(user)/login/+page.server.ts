@@ -1,6 +1,6 @@
 import { createSession, setSessionUser } from '$lib/server/session';
 import { getUserFromUsername } from '$lib/server/db/users';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import argon2 from 'argon2';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -12,9 +12,6 @@ export const actions: Actions = {
 
 		const session = cookies.get('session');
 		const { sessionID } = JSON.parse(session!);
-		if (!session || !sessionID) {
-			redirect(303, '/register');
-		}
 
 		if (typeof username !== 'string') {
 			return fail(400, {

@@ -1,33 +1,14 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import CatalogCard from '$lib/components/CatalogCard.svelte';
 
 	export let data;
 	let auth = data.auth ? data.auth : false;
 	let productAmounts: any = {};
 
-	if (data.cart) {
-		for (const product of data.products) {
-			for (const cart of [data.cart]) {
-				if (cart.items) {
-					for (const item of Object.values(cart.items)) {
-						const currentItem = item[product.id];
-						if (typeof currentItem === 'undefined') {
-							console.warn('undefined item skipped');
-						} else {
-							productAmounts[product.id] = { amt: item[product.id].amt };
-						}
-					}
-				}
-			}
-		}
-	} else {
-		for (const product of data.products) {
-			console.log('no cart forced write');
-			productAmounts[product.id] = { amt: 0 };
-		}
+	for (const product of data.products) {
+		productAmounts[product.id] = { amt: 0 };
 	}
-
-	export let form;
 </script>
 
 <div class={'flex flex-col justify-between' + (auth ? 'items-end' : 'items-center')}>
@@ -58,6 +39,7 @@
 					action="?/cart"
 					method="post"
 					class="w-full sm:w-36 bg-[#65adff] rounded-md transition duration-300 flex justify-center text-white/80 hover:text-white select-none ring-1 ring-white/[0.05] hover:ring-black/30 focus:outline-none focus-visible:ring-[#65adff]"
+					use:enhance
 				>
 					{#each data.products as product (product.id)}
 						<input
