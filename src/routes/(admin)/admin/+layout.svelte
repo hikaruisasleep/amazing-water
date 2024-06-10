@@ -1,19 +1,10 @@
 <script>
 	import '$lib/app.css';
 	import Background from '$lib/components/Background.svelte';
-
-	export let data;
-	$: auth = data.auth;
-
-	let dropdown = false;
-
-	const toggleProfileDropdown = () => {
-		dropdown = !dropdown;
-	};
 </script>
 
 <div class="bg-gray-50 text-black/50">
-	<Background></Background>
+	<Background />
 	<div
 		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-0 px-1 lg:px-28"
 	>
@@ -29,46 +20,6 @@
 						<span class="hidden sm:inline-block text-xs"> Admin Panel </span>
 					</h1>
 				</a>
-				<nav class="-mx-3 flex flex-1 justify-end">
-					{#if auth}
-						<button
-							type="button"
-							class="flex flex-row rounded-md px-3 py-2 text-black ring-1 ring-transparent transition duration-500 hover:opacity-70 focus-visible:ring-[#65adff]"
-							on:click={toggleProfileDropdown}
-						>
-							<div class="size-8 bg-gray-700 rounded-full relative overflow-clip">
-								<div
-									class="size-3 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/3"
-								></div>
-								<div
-									class="size-6 rounded-full bg-white absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-full"
-								></div>
-							</div>
-						</button>
-
-						<!-- 
-							<Dropdown.Content>
-								<Dropdown.Link href={route('dashboard')}>Profile</Dropdown.Link>
-								<Dropdown.Link href={route('logout')} method="post" as="button">
-									Log Out
-								</Dropdown.Link>
-							</Dropdown.Content>
-						</Dropdown> -->
-					{:else}
-						<a
-							href="login"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff]"
-						>
-							Log in
-						</a>
-						<a
-							href="register"
-							class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#65adff]"
-						>
-							Register
-						</a>
-					{/if}
-				</nav>
 			</header>
 			<main class="mt-6">
 				<slot />
