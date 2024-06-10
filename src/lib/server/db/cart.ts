@@ -23,4 +23,8 @@ const editCartById = async (cart: InsertCartParams & { id: string; owner_id: str
 		.where(eq(carts.id, cart.id) && eq(carts.owner_id, cart.owner_id));
 };
 
-export { createNewCart, getCartById, getCartFromOwnerId, editCartById };
+const clearCart = async (uid: string) => {
+	await db.delete(carts).where(eq(carts.owner_id, uid));
+};
+
+export { createNewCart, getCartById, getCartFromOwnerId, editCartById, clearCart };

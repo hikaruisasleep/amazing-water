@@ -31,11 +31,7 @@ type InsertUserParams = typeof users.$inferInsert;
 
 const products = sqliteTable('products', {
 	...timestamp,
-	id: text('id')
-		.primaryKey()
-		.notNull()
-		.unique()
-		.$defaultFn(() => generateUid()),
+	id: text('id').primaryKey().notNull().unique(),
 	name: text('name').notNull().unique(),
 	description: text('description'),
 	price: integer('price').notNull()
@@ -57,11 +53,27 @@ const carts = sqliteTable('cart', {
 
 type InsertCartParams = typeof carts.$inferInsert;
 
+const orders = sqliteTable('orders', {
+	id: text('id')
+		.primaryKey()
+		.notNull()
+		.unique()
+		.$defaultFn(() => generateUid()),
+	customer_id: text('customer_id')
+		.references(() => users.id)
+		.notNull(),
+	orders: text('orders', { mode: 'json' }).$type<{ [x: string]: { amt: number } }[]>()
+});
+
+type InsertOrderParams = typeof orders.$inferInsert;
+
 export {
 	users,
 	type InsertUserParams,
 	products,
 	type InsertProductParams,
 	carts,
-	type InsertCartParams
+	type InsertCartParams,
+	orders,
+	type InsertOrderParams
 };

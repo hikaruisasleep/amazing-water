@@ -13,7 +13,7 @@
 </script>
 
 <div class="bg-gray-50 text-black/50">
-	<Background />
+	<Background></Background>
 	<div
 		class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#65adff] selection:text-white pt-12 lg:pt-0 px-1 lg:px-28"
 	>

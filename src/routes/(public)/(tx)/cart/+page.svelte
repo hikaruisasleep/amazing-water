@@ -23,8 +23,8 @@
 >
 	{#if cartItems.length}
 		<h1 class="text-black font-bold text-2xl my-8">Your cart</h1>
-		<div>
-			<div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+		<div class="w-full px-2 sm:px-12">
+			<div class="grid gap-4 grid-cols-1" class:lg:grid-cols-2={cartItems.length > 1}>
 				{#each cartItems as item (item.product.id)}
 					<CartCard
 						title={item.product.name}

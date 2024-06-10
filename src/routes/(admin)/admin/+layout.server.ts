@@ -1,4 +1,4 @@
-import { getUserById } from '$lib/server/db/users';
+import { getAllOrders } from '$lib/server/db/orders';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async function load({ cookies }) {

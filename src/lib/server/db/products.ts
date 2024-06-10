@@ -1,6 +1,6 @@
 import { db } from '$lib/server/db/client';
 import { products, type InsertProductParams } from '$lib/server/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 
 const createNewProduct = async (product: InsertProductParams) => {
 	await db.insert(products).values(product);
@@ -17,7 +17,7 @@ const deleteProductById = async (id: string) => {
 };
 
 const getAllProducts = async () => {
-	return await db.select().from(products).orderBy(desc(products.id));
+	return await db.select().from(products).orderBy(asc(products.id));
 };
 
 const editProductById = async (product: InsertProductParams & { id: string }) => {

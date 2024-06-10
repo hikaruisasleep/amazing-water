@@ -28,7 +28,7 @@
 				</a>
 				<nav class="-mx-3 flex flex-1 justify-end relative">
 					{#if auth}
-						<a href="cart">
+						<a href="/cart">
 							<span class="fa-solid fa-cart-shopping pb-2 text-2xl text-black py-3 px-2"></span>
 						</a>
 						<button

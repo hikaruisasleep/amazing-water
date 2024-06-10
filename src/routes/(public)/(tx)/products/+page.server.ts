@@ -27,14 +27,21 @@ export const actions: Actions = {
 		for (const i of allItems) {
 			let amt = <string>form.get(i.id);
 			console.log('plain', amt);
+			console.log('iterating object:', i);
 			if (!_.isEmpty(cart.items) && cart.items != null) {
+				console.log('cart hit: plain', amt);
 				let itemsArray = Object.values(cart.items);
+				console.log('cart hit: contents', itemsArray);
 				let currentItem = itemsArray.find((item) => {
+					console.log('testing', Object.keys(item)[0], 'against', i.id);
 					return Object.keys(item)[0] == i.id;
 				});
 
 				if (typeof currentItem === 'undefined') {
-					return fail(403, { error: 'No such item' });
+					currentItem = { [i.id]: { amt: parseInt(amt) } };
+					console.log('item undefined, forced write as', currentItem);
+				} else {
+					console.log('cart hit: item', currentItem);
 				}
 
 				if (Object.values(currentItem)[0].amt == null) {
@@ -44,6 +51,7 @@ export const actions: Actions = {
 				let total = parseInt(String(Object.values(currentItem)[0].amt)) + parseInt(amt);
 
 				items.push({ [i.id]: { amt: total } });
+				console.log('added', amt, 'of', i.id);
 			} else {
 				console.log('plain in else', amt);
 				console.log(parseInt(amt));
@@ -62,17 +70,20 @@ export const actions: Actions = {
 
 export const load: PageServerLoad = async function load({ cookies }) {
 	const session = cookies.get('session');
-	if (!session) {
-		redirect(301, '/login');
+	let uid: any;
+	let cart: any | null;
+	if (session) {
+		uid = JSON.parse(session!).uid;
+		cart = await getCartFromOwnerId(uid);
+		if (cart == null) {
+			await createNewCart({ owner_id: uid });
+			cart = await getCartFromOwnerId(uid);
+		}
+	} else {
+		cart = null;
 	}
-	const { uid } = JSON.parse(session!);
 
 	const products = await getAllProducts();
-	let cart = await getCartFromOwnerId(uid);
-	if (cart == null) {
-		await createNewCart({ owner_id: uid });
-		cart = await getCartFromOwnerId(uid);
-	}
 
 	return {
 		products: products,

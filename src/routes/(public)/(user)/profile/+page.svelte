@@ -10,4 +10,7 @@
 	let user = data.auth.user;
 </script>
 
-<p>{user.first_name} {user.last_name}</p>
+<div class="bg-white rounded p-4">
+	<h1 class="text-black font-semibold">{user.first_name} {user.last_name}</h1>
+	<p>member since {user.createdAt.toLocaleDateString()}</p>
+</div>
