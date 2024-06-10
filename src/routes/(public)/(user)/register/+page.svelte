@@ -40,7 +40,7 @@
 			/>
 		</div>
 		<div class="flex col-span-2 row-span-1 justify-end">
-			<button type="submit" class="w-fit h-fit px-4 py-2 rounded-md bg-[#65adff]">Login</button>
+			<button type="submit" class="w-fit h-fit px-4 py-2 rounded-md bg-[#65adff]">Register</button>
 		</div>
 	</form>
 	<p class="login">Already have an account? <a href="/login" class="text-[#65adff]">Log in</a>.</p>
