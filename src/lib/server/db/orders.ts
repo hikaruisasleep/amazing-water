@@ -15,4 +15,8 @@ const getOrderById = async (id: string) => {
 	return order[0];
 };
 
-export { createNewOrder, getAllOrders, getOrderById };
+const deleteOrderById = async (id: string) => {
+	await db.delete(orders).where(eq(orders.id, id));
+};
+
+export { createNewOrder, getAllOrders, getOrderById, deleteOrderById };

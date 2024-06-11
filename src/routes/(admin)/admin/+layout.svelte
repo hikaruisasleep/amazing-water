@@ -17,7 +17,7 @@
 					<span class="fa-solid fa-droplet pr-5 pt-3 pl-1 text-4xl" />
 					<h1 class="flex flex-col justify-center">
 						<span class="text-md sm:text-3xl font-extrabold"> Amazing Water </span>
-						<span class="hidden sm:inline-block text-xs"> Admin Panel </span>
+						<span class="inline-block text-xs"> Admin Panel </span>
 					</h1>
 				</a>
 			</header>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let product;
 	export let customer;
+	export let orderId;
 
 	let productsArray = [];
 
@@ -18,7 +19,13 @@
 			<p>{pd.product.name} x{pd.amount}</p>
 		{/each}
 	</div>
-	<div>
-		<p></p>
+	<div class="flex justify-center items-center">
+		<form action="?/clear" method="post">
+			<input type="text" name="id" id="id" value={orderId} class="hidden" />
+			<button type="submit"
+				><i class="fa-regular fa-circle-check text-2xl text-gray-700 hover:text-green-700"
+				></i></button
+			>
+		</form>
 	</div>
 </div>
